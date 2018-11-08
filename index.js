@@ -28,7 +28,7 @@ Array.prototype.toObj = function () {
 }
 
 words.toObj();
-console.log(newObj);
+// console.log(newObj);
 
 
 DOM.searchInput.addEventListener('input', () => {

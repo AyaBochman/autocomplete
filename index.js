@@ -10,6 +10,8 @@ let words = ["scream", "scream2", "men in black", "men in black2", "kill bill", 
 
 let newObj = {};
 
+const clear = ()=>{DOM.suggest.innerHTML = "";}
+
 Array.prototype.toObj = function () {
    
     for (i = 0; i < this.length; i++) {
@@ -27,23 +29,41 @@ Array.prototype.toObj = function () {
 
 words.toObj();
 console.log(newObj);
-const clear = ()=>{DOM.suggest.innerHTML = "";}
+
 
 DOM.searchInput.addEventListener('input',()=>{
-    if(DOM.searchInput.value.length < 5){
-      for(key in newObj){
-          if(key == DOM.searchInput.value[0]){
-           
-                  console.log(newObj[key]);
+    
+    if(DOM.searchInput.value.length < 2){
+        clear();
+        let a = DOM.searchInput.value[0];
+        if(a in newObj){
+            newObj[a].forEach(ele => {
+            let sug = document.createElement("span");
+            sug.classList.add("suggestion");
+            sug.innerHTML = ele + "<br>";
+            DOM.suggest.appendChild(sug);
+            });
             
-            // let sug = document.createElement("span");
-            // sug.classList.add("suggestion");
-            // sug.innerHTML = newObj[key] + "<br>";
-            // DOM.suggest.appendChild(sug);
-            //   console.log(newObj[key])
-          }
+  
+        }
+    //   for(key in newObj){
+        //   if(newObj[DOM.searchInput.value[0]] == DOM.searchInput.value[0]){
+        //       console.log(newObj[key]);
+        //       clear();
+        //   }
+        // console.log(Object.keys(newObj));
+        //   if(Object.keys(newObj).includes(DOM.searchInput.value[0])){
+           
+        //           console.log("hey");
+            
+        //     // let sug = document.createElement("span");
+        //     // sug.classList.add("suggestion");
+        //     // sug.innerHTML = newObj[key] + "<br>";
+        //     // DOM.suggest.appendChild(sug);
+        //     //   console.log(newObj[key])
+        //   }
          
-      }
+    //   }
     }
     
 })

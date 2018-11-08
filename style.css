@@ -1,14 +1,32 @@
 
 
-.suggestion:hover{
+#displaySuggestions{
+    margin-top: 10px;
+
+}
+
+span{
    
-    background: blue;
+}
+.suggestion{
+   margin: 0 auto;
+   width: 200px;
+   padding: 5px;
+    display: block;
+    transition: all 0.3s;
+}
+.suggestion:hover{
+  
+    background: rgba(78, 125, 255, 0.6);
+    border-radius: 50px;
+   
     color: white;
 }
 
 .center{
     margin-top:5%;
     text-align: center;
+    font-size: 18px;
 }
 
 /* span{

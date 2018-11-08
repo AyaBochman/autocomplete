@@ -10,17 +10,17 @@ let words = ["scream", "scream2", "men in black", "men in black2", "kill bill", 
 
 let newObj = {};
 
-const clear = ()=>{DOM.suggest.innerHTML = "";}
+const clear = () => { DOM.suggest.innerHTML = ""; }
 
 Array.prototype.toObj = function () {
-   
+
     for (i = 0; i < this.length; i++) {
-  
+
         let keysArr = Object.keys(newObj);
-        if(keysArr.includes(this[i][0]) === false){
+        if (keysArr.includes(this[i][0]) === false) {
             newObj[(this[i][0])] = new Array;
         }
-    
+
         newObj[(this[i][0])].push(this[i]);
     }
 
@@ -31,158 +31,30 @@ words.toObj();
 console.log(newObj);
 
 
-DOM.searchInput.addEventListener('input',()=>{
-    
-    if(DOM.searchInput.value.length < 2){
+DOM.searchInput.addEventListener('input', () => {
+
+    if (DOM.searchInput.value.length < 4) {
         clear();
         let a = DOM.searchInput.value[0];
-        if(a in newObj){
+        if (a in newObj) {
             newObj[a].forEach(ele => {
-            let sug = document.createElement("span");
-            sug.classList.add("suggestion");
-            sug.innerHTML = ele + "<br>";
-            DOM.suggest.appendChild(sug);
+                let div = document.createElement("div");
+                let sug = document.createElement("span");
+                div.classList.add("suggestion");
+                sug.innerHTML = ele;
+                div.addEventListener('click',()=>{
+                    DOM.searchInput.value = sug.innerText;
+                })
+                div.appendChild(sug);
+                DOM.suggest.appendChild(div);
             });
-            
-  
+
+
         }
-    //   for(key in newObj){
-        //   if(newObj[DOM.searchInput.value[0]] == DOM.searchInput.value[0]){
-        //       console.log(newObj[key]);
-        //       clear();
-        //   }
-        // console.log(Object.keys(newObj));
-        //   if(Object.keys(newObj).includes(DOM.searchInput.value[0])){
-           
-        //           console.log("hey");
-            
-        //     // let sug = document.createElement("span");
-        //     // sug.classList.add("suggestion");
-        //     // sug.innerHTML = newObj[key] + "<br>";
-        //     // DOM.suggest.appendChild(sug);
-        //     //   console.log(newObj[key])
-        //   }
-         
-    //   }
+
+    }else{
+        clear();
     }
-    
+   
+
 })
-
-// function search() {
-
-//     clear();
-//     if (DOM.searchInput.value.length < 6) {
-//         for (key in letters) {
-//             if (key.includes(DOM.searchInput.value[0])) {
-//                 letters[key].forEach(function (element) {
-//                     let sug = document.createElement("span");
-//                     sug.classList.add("suggestion");
-//                     sug.innerHTML = element + "<br>";
-//                     sug.addEventListener('click', function () {
-//                         DOM.searchInput.value = sug.innerText;
-//                         clear();
-//                     })
-//                     DOM.suggest.appendChild(sug);
-//                 })
-
-//             }
-//         }
-//         // if(DOM.searchInput.value.length > 6){
-//         //     DOM.suggest.innerHTML = "";
-//         // }
-//     }
-
-
-
-// }
-
-// $("#searchInput").on('input', search);
-
-// clear();
-// $("#searchInput").on('keydown', function(){
-//     if(DOM.searchInput.value.length > 4){
-//         search();
-//     }
-
-
-// })
-
-//what key to define in the object
-
-// function createObj(arr){
-//     let Obj = {};
-
-//     for(i=0;i<arr.length;i++){
-//         Obj[arr[i][0]] = [arr[i]];
-//         // if(arr[i].length > 1){
-
-//         // }
-//     }
-//     console.log(Obj);
-// }
-
-// createObj(words);
-
-// function search(arr) {
-
-//     let obj = {};
-//     for (i = 0; i < arr.length; i++) {
-//         obj[arr[i]] = arr[i];
-//     }
-
-//     let names = Object.keys(obj);
-//     $("#searchInput").on('keydown', function () {
-//         if (DOM.searchInput.value.length > 4) {
-//             if (names.includes(DOM.searchInput.value)) {
-//                 console.log(names);
-//             }
-
-//         }
-
-//     })
-
-//     // console.log(Object.keys(obj));
-//     // if()
-// }
-
-// search(words);
-
-
-// Object.assign({},words);
-// console.log(words);
-// $("#searchInput").on("keydown", function () {
-//     DOM.suggest.innerHTML = "";
-//     if ($("#searchInput").val().length > 3) {
-
-//         let start = 0;
-//         let finish = words.length-1;
-//         let i = start;
-//         while (i < finish) {
-//             if (words[i].includes($("#searchInput").val())) {
-//                 let sug = document.createElement("span");
-//                 sug.innerHTML = words[i] + "<br>";
-//                 DOM.suggest.appendChild(sug);
-//                 console.log(i);
-//                 console.log(words[i]);
-//                 sug.addEventListener("click", function(){
-//                    DOM.searchInput.value = sug.innerText;
-//                 })
-//             }
-
-//             i++;
-//         }
-
-
-//     }
-// })
-
-   // console.log(words);
-        // for(i=0;i<words.length;i++){
-        //     if(words[i].includes($("#searchInput").val())){
-        //         let sug = document.createElement("span");
-        //         sug.innerHTML = words[i] + "<br>";
-        //         DOM.suggest.appendChild(sug);
-
-        //         // console.log(words[i]);
-        //     }
-        // }
